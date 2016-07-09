@@ -45,3 +45,8 @@ input#tags {
 .ap-cradit {
     display: none;
 }
+
+/*ultimate members CSS changes*/
+form.ap-avatar-upload-form {
+    display: none;
+}
