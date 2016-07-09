@@ -809,7 +809,7 @@ function ap_get_cover_src($user_id = false, $small = false) {
 	} else {
 		if ( $small ) {
 			return ap_get_theme_url( 'images/small_cover.jpg' ); } else {
-			return ap_get_theme_url( 'images/cover_'.($user_id%19).'.jpg' ); }
+			return ap_get_theme_url( 'images/cover_'.($user_id%19).'.png' ); }
 	}
 }
 
