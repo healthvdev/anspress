@@ -50,3 +50,12 @@ input#tags {
 form.ap-avatar-upload-form {
     display: none;
 }
+.ap-question-item {
+    padding: 8px 2px;
+}
+span.ap-ans-count {
+    font-size: 12px;
+}
+span.ap-vote-count {
+    font-size: 12px;
+}
