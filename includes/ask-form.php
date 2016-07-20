@@ -19,7 +19,7 @@ if ( ! defined( 'WPINC' ) ) {
  * @return array
  * @since  3.0.0
  */
-function ap_get_ask_form_fields( $post_id = false ) {
+function ap_get_ask_form_fields( $post_id = false , $discussion = true) {
 	global $editing_post;
 	$editing = false;
 
@@ -39,8 +39,8 @@ function ap_get_ask_form_fields( $post_id = false ) {
 			'name' => 'title',
 			'label' => __( 'Title', 'anspress-question-answer' ),
 			'type'  => 'text',
-			'placeholder'  => __( 'Question in one sentence', 'anspress-question-answer' ),
-			'desc'  => __( 'Write a meaningful title for the question.', 'anspress-question-answer' ),
+			'placeholder'  => __( ($discussion?'Discussion title in one sentence':'Question in one sentence'), 'anspress-question-answer' ),
+			'desc'  => __( ($discussion?'Write a meaningful title for the discussion.':'Write a meaningful title for the question.'), 'anspress-question-answer' ),
 			'value' => ( $editing ? $editing_post->post_title : ap_isset_post_value( 'title', '' ) ),
 			'order' => 5,
 			'attr' => 'data-action="suggest_similar_questions" data-loadclass="q-title"',
@@ -77,7 +77,15 @@ function ap_get_ask_form_fields( $post_id = false ) {
 			'order' => 20,
 			'sanitize' => array( 'only_int' ),
 		),
+		array(
+			'name'      => 'is_discussion',
+			'type'      => 'hidden',
+			'value'     => $discussion,
+			'order'     => 12,
+			'sanitize' => array( 'only_boolean' ),
+		),
 	);
+
 
 	// Add name fields if anonymous is allowed.
 	if ( ! is_user_logged_in() && ap_opt( 'allow_anonymous' ) ) {
@@ -166,6 +174,27 @@ function ap_ask_form( $editing = false ) {
 		'is_ajaxified'      => true,
 		'multipart'         => true,
 		'submit_button'     => ($editing ? __( 'Update question', 'anspress-question-answer' ) : __( 'Post question', 'anspress-question-answer' )),
+		'fields'            => ap_get_ask_form_fields( $post_id , false),
+	);
+
+	$form = new AnsPress_Form( $args );
+	echo $form->get_form();
+	echo ap_post_upload_hidden_form();
+}
+
+/**
+ * Generate discuss form
+ * @param  boolean $editing True if post is being edited.
+ * @return void
+ */
+function ap_discuss_form( $editing = false ) {
+	$post_id = $editing ? (int) $_REQUEST['edit_post_id'] : false;
+	// Ask form arguments.
+	$args = array(
+		'name'              => 'discuss_form',
+		'is_ajaxified'      => true,
+		'multipart'         => true,
+		'submit_button'     => ($editing ? __( 'Update topic', 'anspress-question-answer' ) : __( 'Post topic', 'anspress-question-answer' )),
 		'fields'            => ap_get_ask_form_fields( $post_id ),
 	);
 
@@ -317,6 +346,10 @@ function ap_save_question($args, $wp_error = false) {
 		// Update Custom Meta.
 		if ( ! empty( $args['anonymous_name'] ) ) {
 			update_post_meta( $post_id, 'anonymous_name', $args['anonymous_name'] );
+		}
+
+		if ( ! empty( $args['is_discussion'] ) ) {
+			update_post_meta( $post_id, 'is_discussion', $args['is_discussion'] );
 		}
 
 		$post = get_post( $post_id );

@@ -14,6 +14,7 @@
 		/**
 		 * By default this title is hidden
 		 */
+		ap_is_discussion(ap_question_get_the_ID());
 	if ( ap_opt('show_title_in_question' ) ) :
 	?>
 	<h1 class="entry-title"><a href="<?php get_permalink() ?>"><?php the_title(); ?></a></h1>

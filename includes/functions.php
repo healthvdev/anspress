@@ -202,6 +202,18 @@ function is_ask() {
 }
 
 /**
+ * Is ask page.
+ * @return boolean
+ */
+function is_discuss() {
+	if ( is_anspress() && ap_current_page() == ap_get_discuss_page_slug() ) {
+		return true;
+	}
+
+	return false;
+}
+
+/**
  * Ask page slug.
  * @return string
  */
@@ -214,6 +226,21 @@ function ap_get_ask_page_slug() {
 
 	return 'ask';
 }
+
+/**
+ * Ask page slug.
+ * @return string
+ */
+function ap_get_discuss_page_slug() {
+	$opt = ap_opt( 'discuss_page_slug' );
+
+	if ( $opt ) {
+		return $opt;
+	}
+
+	return 'discuss';
+}
+
 
 function is_ap_users() {
 	if ( is_anspress() && ap_current_page() == ap_get_users_page_slug() ) {
@@ -1071,6 +1098,7 @@ function ap_get_link_to($sub) {
 	$default_pages = array(
 		'question' 	=> ap_opt( 'question_page_slug' ),
 		'ask' 		=> ap_opt( 'ask_page_slug' ),
+		'discuss' 		=> ap_opt( 'discuss_page_slug' ),
 		'users' 	=> ap_opt( 'users_page_slug' ),
 		'user' 		=> ap_opt( 'user_page_slug' ),
 	);

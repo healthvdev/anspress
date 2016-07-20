@@ -227,6 +227,14 @@ class AnsPress_Options_Fields
 				'order' => 5,
 			),
 			array(
+				'name' => 'discuss_page_slug',
+				'label' => __( 'Discuss page slug', 'anspress-question-answer' ),
+				'desc' => __( 'Enter slug for discuss page.', 'anspress-question-answer' ),
+				'type' => 'text',
+				'show_desc_tip' => false,
+				'order' => 5,
+			),
+			array(
 				'name' => 'question_page_slug',
 				'label' => __( 'Question page slug', 'anspress-question-answer' ),
 				'desc' => __( 'Enter slug for question page.', 'anspress-question-answer' ),
@@ -279,6 +287,13 @@ class AnsPress_Options_Fields
 				'name' => 'ask_page_title',
 				'label' => __( 'Ask page title', 'anspress-question-answer' ),
 				'desc' => __( 'Title of the ask page', 'anspress-question-answer' ),
+				'type' => 'text',
+				'show_desc_tip' => false,
+			) ,
+			array(
+				'name' => 'discuss_page_title',
+				'label' => __( 'Discuss page title', 'anspress-question-answer' ),
+				'desc' => __( 'Title of the discussion page', 'anspress-question-answer' ),
 				'type' => 'text',
 				'show_desc_tip' => false,
 			) ,

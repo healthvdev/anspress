@@ -558,3 +558,18 @@ function ap_is_featured_question($question_id = false) {
 
 	return false;
 }
+
+/**
+ * Check if current post is marked as featured
+ * @param  boolean|integer $question_id    Question ID to check.
+ * @return boolean
+ * @since 2.2.0.1
+ */
+function ap_is_discussion($question_id = false) {
+	if ( false === $question_id ) {
+		$question_id = get_the_ID(); }
+
+	$meta = get_post_meta( $question_id, 'is_discussion', true );
+
+	return $meta;
+}

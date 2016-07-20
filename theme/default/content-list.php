@@ -30,7 +30,10 @@ $clearfix_class = array( 'ap-questions-item clearfix' );
         <div class="ap-questions-summery no-overflow">
             <span class="ap-questions-title entry-title" itemprop="title">
 				<?php ap_question_the_status(); ?>
-				<a class="ap-questions-hyperlink" itemprop="url" href="<?php ap_question_the_permalink(); ?>" rel="bookmark" title="<?php the_title(); ?>"><?php the_title(); ?></a>
+				<a class="ap-questions-hyperlink" itemprop="url" href="<?php ap_question_the_permalink(); ?>" rel="bookmark" title="<?php the_title(); ?>">
+                <?php the_title(); ?>
+                <?php echo (ap_is_discussion(get_the_ID())?' #Community':' #AskExpert');?>
+                </a>
             </span>
             <div class="ap-display-question-meta">
 				<?php echo ap_display_question_metas() ?>

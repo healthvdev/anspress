@@ -107,6 +107,10 @@ class AnsPress_Process_Form
 				$this->process_ask_form();
 				break;
 
+			case 'discuss_form':
+				$this->process_discuss_form();
+				break;
+
 			case 'answer_form':
 				$this->process_answer_form();
 				break;
@@ -136,8 +140,28 @@ class AnsPress_Process_Form
 	 * @since 2.0.1
 	 */
 	public function process_ask_form() {
+		$this->process_common_form('ask_form');
+	}
+
+
+	/**
+	 * Process discuss form
+	 * @return void
+	 * @since 2.0.1
+	 */
+	public function process_discuss_form() {
+		$this->process_common_form('discuss_form');
+	}
+
+
+	/**
+	 * Process form
+	 * @return void
+	 * @since 2.0.1
+	 */
+	public function process_common_form($action) {
 		// Do security check, if fails then return.
-		if ( ! ap_user_can_ask() || ! isset( $_POST['__nonce'] ) || ! wp_verify_nonce( $_POST['__nonce'], 'ask_form' ) ) {
+		if ( ! ap_user_can_ask() || ! isset( $_POST['__nonce'] ) || ! wp_verify_nonce( $_POST['__nonce'], $action ) ) {
 			ap_ajax_json('no_permission' );
 		}
 
@@ -208,6 +232,10 @@ class AnsPress_Process_Form
 
 		if ( isset( $fields['parent_id'] ) ) {
 			$question_array['post_parent'] = (int) $fields['parent_id'];
+		}
+
+		if ( isset( $fields['is_discussion'] ) ) {
+			$question_array['is_discussion'] = (int) $fields['is_discussion'];
 		}
 
 		$post_id = ap_save_question( $question_array, true );

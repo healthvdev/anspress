@@ -38,6 +38,8 @@ function ap_page_title() {
 		$new_title = sprintf( ap_opt( 'search_page_title' ), sanitize_text_field( get_query_var( 'ap_s' ) ) );
 	} elseif ( is_ask() ) {
 		$new_title = ap_opt( 'ask_page_title' );
+	} elseif ( is_ask() ) {
+		$new_title = ap_opt( 'discuss_page_title' );
 	} elseif ( is_ap_users() ) {
 		$new_title = ap_opt( 'users_page_title' );
 	} elseif ( '' == $current_page && ! is_question() && '' == get_query_var( 'question_name' ) ) {
@@ -125,6 +127,8 @@ function ap_current_page_is() {
 			$template = 'question';
 		} elseif ( is_ask() ) {
 			$template = 'ask';
+		} elseif ( is_discuss() ) {
+			$template = 'discuss';
 		} elseif ( is_question_categories() ) {
 			$template = 'categories';
 		} elseif ( is_question_cat() ) {
@@ -675,7 +679,7 @@ function ap_display_answer_metas($answer_id = false) {
  * @since 2.1
  */
 function ap_ask_btn() {
-	echo ap_get_ask_btn();
+	echo "<div class='ap-filter clearfix' style='border:0px;float:right;'>".ap_get_discuss_btn() . "<br/>". ap_get_ask_btn() . "</div>";
 }
 
 /**
@@ -692,7 +696,24 @@ function ap_get_ask_btn() {
 	 */
 	$link = apply_filters( 'ap_ask_btn_link', $link );
 
-	return '<a class="ap-btn-ask" href="'.$link.'">'.__( 'Ask question', 'anspress-question-answer' ).'</a>';
+	return '<span class="ap-dropdown-toggle  clearfix" style="border-right: 0px;float:right;font-weight: 400;"> or '.'<a  href="'.$link.'">'.__( 'Ask an Expert', 'anspress-question-answer' ).'</a></span>';
+}
+
+/**
+ * Return the ask button. *
+ * @return string Ask button HTML
+ * @since 2.1
+ */
+function ap_get_discuss_btn() {
+	$link = ap_get_link_to( 'discuss' );
+
+	/**
+	 * Filter ask button link.
+	 * @param string $link
+	 */
+	$link = apply_filters( 'ap_discuss_btn_link', $link );
+
+	return '<a class="ap-btn-ask" href="'.$link.'">'.__( 'Start Discussion', 'anspress-question-answer' ).'</a>';
 }
 
 /**

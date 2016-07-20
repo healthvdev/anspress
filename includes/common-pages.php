@@ -21,6 +21,7 @@ class AnsPress_Common_Pages
 		ap_register_page( 'base', ap_opt( 'base_page_title' ), array( __CLASS__, 'base_page' ) );
 		ap_register_page( ap_opt( 'question_page_slug' ), __( 'Question', 'anspress-question-answer' ), array( __CLASS__, 'question_page' ), false );
 		ap_register_page( ap_opt( 'ask_page_slug' ), __( 'Ask', 'anspress-question-answer' ), array( __CLASS__, 'ask_page' ) );
+		ap_register_page( ap_opt( 'discuss_page_slug' ), __( 'Discuss', 'anspress-question-answer' ), array( __CLASS__, 'discuss_page' ) );
 		ap_register_page( 'edit', __( 'Edit', 'anspress-question-answer' ), array( __CLASS__, 'edit_page' ), false );
 		ap_register_page( 'search', __( 'Search', 'anspress-question-answer' ), array( __CLASS__, 'search_page' ), false );
 		ap_register_page( 'activity', __( 'Activity feed', 'anspress-question-answer' ), array( __CLASS__, 'activity_page' ) );
@@ -125,6 +126,13 @@ class AnsPress_Common_Pages
 	 */
 	public static function ask_page() {
 		include ap_get_theme_location( 'ask.php' );
+	}
+
+	/**
+	 * Output discuss page template
+	 */
+	public static function discuss_page() {
+		include ap_get_theme_location( 'discuss.php' );
 	}
 
 	/**
