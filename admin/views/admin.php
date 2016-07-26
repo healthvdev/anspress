@@ -14,7 +14,7 @@ if ( ! defined( 'WPINC' ) ) {
 new AnsPress_Options_Fields();
 
 if ( isset( $_POST['__nonce'] ) && wp_verify_nonce( $_POST['__nonce'], 'nonce_option_form' ) && current_user_can( 'manage_options' ) ) {
-	flush_rewrite_rules();
+
 
 	$settings = get_option( 'anspress_opt', array() );
 	$groups = ap_get_option_groups();
@@ -25,16 +25,27 @@ if ( isset( $_POST['__nonce'] ) && wp_verify_nonce( $_POST['__nonce'], 'nonce_op
 	if ( '' != $active ) {
 		$fields = $groups[ $active ]['fields'];
 
-		// Get only field name.
-		$field_names = array_column( $fields, 'name' );
+		$default_opt = ap_default_options();
 
 		// Check $_POST value against fields.
-		foreach ( (array) $field_names as $name ) {
-			$value = ap_sanitize_unslash( $name, 'request' );
-			if ( ! empty( $value ) ) {
-				$settings[ $name ] = $value;
+		foreach ( (array) $fields as $f ) {
+
+			$value = ap_sanitize_unslash( $f['name'], 'request' );
+
+			// If reset then get value from default option.
+			if ( isset( $_POST['reset'] ) ) {
+				$value = $default_opt[ $f['name'] ];
+			}
+
+			// Set checkbox field value as 0 when empty.
+			if ( 'checkbox' == $f['type'] && empty( $value ) ) {
+				$value = '0';
+			}
+
+			if ( isset( $value ) ) {
+				$settings[ $f['name'] ] = $value;
 			} else {
-				unset( $settings[ $name ] );
+				unset( $settings[ $f['name'] ] );
 			}
 		}
 
@@ -42,6 +53,7 @@ if ( isset( $_POST['__nonce'] ) && wp_verify_nonce( $_POST['__nonce'], 'nonce_op
 		wp_cache_delete( 'anspress_opt', 'ap' );
 		$_POST['anspress_opt_updated'] = true;
 	}
+	flush_rewrite_rules();
 }
 
 ?>
