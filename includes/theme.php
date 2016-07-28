@@ -679,7 +679,7 @@ function ap_display_answer_metas($answer_id = false) {
  * @since 2.1
  */
 function ap_ask_btn() {
-	echo "<div class='ap-filter clearfix' style='border:0px;float:right;'>".ap_get_discuss_btn() . "<br/>". ap_get_ask_btn() . "</div>";
+	echo "<div class='ap-filter clearfix' style='border:0px;float:right;'>".ap_get_discuss_btn() . /*"<br/>". ap_get_ask_btn() .*/ "</div>";
 }
 
 /**

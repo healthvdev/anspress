@@ -80,7 +80,7 @@ function ap_get_ask_form_fields( $post_id = false , $discussion = true) {
 		array(
 			'name'      => 'is_discussion',
 			'type'      => 'hidden',
-			'value'     => $discussion,
+			'value'     => ( $editing ? $editing_post->is_discussion : $discussion  ),
 			'order'     => 12,
 			'sanitize' => array( 'only_boolean' ),
 		),

@@ -35,6 +35,11 @@ $clearfix_class = array( 'ap-questions-item clearfix' );
                 <?php echo (ap_is_discussion(get_the_ID())?' #Community':' #AskExpert');?>
                 </a>
             </span>
+            <div class="ap-q-inner" style="padding:10px 0px">
+                <div class="question-content ap-q-content" itemprop="text">
+                    <?php the_content(); ?>
+                </div>            
+            </div>
             <div class="ap-display-question-meta">
 				<?php echo ap_display_question_metas() ?>
             </div>
