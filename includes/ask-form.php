@@ -70,7 +70,9 @@ function ap_get_ask_form_fields( $post_id = false , $discussion = true) {
 			'html' => ap_post_upload_form( $editing? $editing_post->ID : false ) ,
 			'order' => 10,
 		),
-		array(
+	);
+	if ( $discussion ) {
+		$fields[] = array(
 			'name' => 'external_link',
 			'label' => __( 'Link', 'anspress-question-answer' ),
 			'type'  => 'text',
@@ -80,21 +82,21 @@ function ap_get_ask_form_fields( $post_id = false , $discussion = true) {
 			'order' => 5,
 			'autocomplete' => false,
 			'sanitize' => array( 'sanitize_text_field' ),
-		),
-		array(
-			'name' => 'parent_id',
-			'type'  => 'hidden',
-			'value' => ( $editing ? $editing_post->post_parent : get_query_var( 'parent' )  ),
-			'order' => 20,
-			'sanitize' => array( 'only_int' ),
-		),
-		array(
-			'name'      => 'is_discussion',
-			'type'      => 'hidden',
-			'value'     => ( $editing ? $editing_post->is_discussion : $discussion  ),
-			'order'     => 12,
-			'sanitize' => array( 'only_boolean' ),
-		),
+		);
+	}
+	$fields[] = array(
+		'name' => 'parent_id',
+		'type'  => 'hidden',
+		'value' => ( $editing ? $editing_post->post_parent : get_query_var( 'parent' )  ),
+		'order' => 20,
+		'sanitize' => array( 'only_int' ),
+	);
+	$fields[] = array(
+		'name'      => 'is_discussion',
+		'type'      => 'hidden',
+		'value'     => ( $editing ? $editing_post->is_discussion : $discussion  ),
+		'order'     => 12,
+		'sanitize' => array( 'only_boolean' ),
 	);
 
 
