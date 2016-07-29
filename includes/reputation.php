@@ -155,7 +155,7 @@ class AP_Reputation {
 		$post = get_post( $postid );
 
 		// Give reputation to post author.
-		if ( $post->post_type == 'question' ) {
+		if ( $post->post_type == 'question' || 'question_link' == $post->post_type || 'question_discussion' == $post->post_type ) {
 			$reputation = ap_reputation_by_event( 'question_upvote', true );
 		} elseif ($post->post_type == 'answer'){
 			$reputation = ap_reputation_by_event( 'answer_upvote', true );

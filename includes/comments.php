@@ -388,7 +388,7 @@ class AnsPress_Comment_Hooks
 function ap_comment_btn_html($echo = false) {
 	global $post;
 	// if ( ap_user_can_comment( $post->ID ) ) {
-	if ( $post->post_type == 'question' && ap_opt( 'disable_comments_on_question' ) ) {
+	if ( ($post->post_type == 'question' || $post->post_type == 'question_link' || $post->post_type == 'question_discussion') && ap_opt( 'disable_comments_on_question' ) ) {
 		return;
 	}
 

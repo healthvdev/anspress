@@ -610,7 +610,7 @@ function ap_get_activity_action_title($args) {
 
 		case 'vote_up':
 			$post = get_post( $args['item_id'] );
-			$cpt_type = $post->post_type == 'question' ? __( 'question', 'anspress-question-answer' ) : __( 'answer', 'anspress-question-answer' );
+			$cpt_type = ($post->post_type == 'question' || $post->post_type == 'question_link' || $post->post_type == 'question_discussion' )? __( 'question', 'anspress-question-answer' ) : __( 'answer', 'anspress-question-answer' );
 			$title = '<a class="ap-q-link" href="'. $args['permalink'] .'">'. $post->post_title .'</a>';
 			$content .= sprintf( __( '%s voted up on %s %s', 'anspress-question-answer' ), $user, $cpt_type, $title );
 			break;

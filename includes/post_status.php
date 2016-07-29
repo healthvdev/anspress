@@ -74,7 +74,7 @@ class AnsPress_Post_Status
 		$post = get_post( $post_id );
 
 	   	// Check if post is question or answer and new post status is not same as old.
-	   	if ( ! in_array( $post->post_type, [ 'question', 'answer' ] ) || $post->post_status == $status ) {
+	   	if ( ! in_array( $post->post_type, [ 'question','question_discussion','question_link', 'answer' ] ) || $post->post_status == $status ) {
 			ap_ajax_json('something_wrong' );
 		}
 

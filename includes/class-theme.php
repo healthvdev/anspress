@@ -47,7 +47,7 @@ class AnsPress_Theme
 	public static function question_answer_post_class($classes) {
 		global $post;
 
-		if ( 'question' == $post->post_type ) {
+		if ( 'question' == $post->post_type || 'question_link' == $post->post_type || 'question_discussion' == $post->post_type ) {
 			if ( ap_question_best_answer_selected( $post->ID ) ) {
 				$classes[] = 'answer-selected';
 			}

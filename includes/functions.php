@@ -285,7 +285,7 @@ function get_question_id() {
 	} elseif ( is_question() && get_query_var( 'question' ) ) {
 		return get_query_var( 'question' );
 	} elseif ( is_question() && get_query_var( 'question_name' ) ) {
-		$post = get_page_by_path( get_query_var( 'question_name' ), OBJECT, 'question' );
+		$post = get_page_by_path( get_query_var( 'question_name' ), OBJECT, array('question','question_link','question_discussion') );
 
 		return $post->ID;
 	} elseif ( get_query_var( 'edit_q' ) ) {

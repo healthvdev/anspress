@@ -229,7 +229,7 @@ class AnsPress_Hooks
 	public static function before_delete($post_id) {
 		$post = get_post( $post_id );
 
-		if ( $post->post_type == 'question' ) {
+		if ( $post->post_type == 'question' || 'question_link' == $post->post_type || 'question_discussion' == $post->post_type) {
 			do_action( 'ap_before_delete_question', $post->ID );
 			$answers = get_posts( [ 'post_parent' => $post->ID, 'post_type' => 'answer' ] );
 

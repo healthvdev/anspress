@@ -65,7 +65,7 @@ if ( ! class_exists( 'Question_Query' ) ) :
 				$this->orderby_questions();
 			}
 
-				$this->args['post_type'] = 'question';
+				$this->args['post_type'] = array('question','question_link','question_discussion');
 
 				$args = $this->args;
 

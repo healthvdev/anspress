@@ -35,7 +35,7 @@ class AP_List_Table_Hooks{
 		global $pagenow;
 		$vars = $query->query_vars;
 
-		if ( $pagenow == 'edit.php' && isset( $vars['post_type'] ) && ($vars['post_type'] == 'question' || $vars['post_type'] == 'answer') && isset( $_GET['flagged'] ) ) {
+		if ( $pagenow == 'edit.php' && isset( $vars['post_type'] ) && ($vars['post_type'] == 'question' || $vars['post_type'] == 'answer' || 'question_link' == $vars['post_type']  || 'question_discussion' == $vars['post_type']) && isset( $_GET['flagged'] ) ) {
 			$query->set( 'meta_query', array( array( 'key' => ANSPRESS_FLAG_META, 'compare' => '>', 'value' => 0 ) ) );
 			$query->set( 'orderby', 'meta_value' );
 		}

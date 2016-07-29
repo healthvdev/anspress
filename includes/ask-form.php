@@ -71,6 +71,17 @@ function ap_get_ask_form_fields( $post_id = false , $discussion = true) {
 			'order' => 10,
 		),
 		array(
+			'name' => 'external_link',
+			'label' => __( 'Link', 'anspress-question-answer' ),
+			'type'  => 'text',
+			'placeholder'  => __('Add optional link', 'anspress-question-answer' ),
+			'desc'  => __( 'Add a link to any web post.', 'anspress-question-answer' ),
+			'value' => ( $editing ? $editing_post->external_link : '' ),
+			'order' => 5,
+			'autocomplete' => false,
+			'sanitize' => array( 'sanitize_text_field' ),
+		),
+		array(
 			'name' => 'parent_id',
 			'type'  => 'hidden',
 			'value' => ( $editing ? $editing_post->post_parent : get_query_var( 'parent' )  ),
@@ -312,7 +323,15 @@ function ap_save_question($args, $wp_error = false) {
 	$args['post_content'] = apply_filters( 'ap_form_contents_filter', $args['post_content'] );
 
 	$args['post_name'] 	  = ap_remove_stop_words_post_name( $args['post_name'] );
-	$args['post_type'] 	  = 'question';
+
+		// Update Custom Meta.
+	if ( ! empty( $args['external_link'] ) ) {
+		$args['post_type'] 	  = 'question_link';
+	} else if ( ! empty( $args['is_discussion'] ) ) {
+		$args['post_type'] 	  = 'question_discussion';
+	} else {
+		$args['post_type'] 	  = 'question';
+	}
 
 	if ( isset( $args['ID'] ) ) {
 		/**
@@ -350,6 +369,10 @@ function ap_save_question($args, $wp_error = false) {
 
 		if ( ! empty( $args['is_discussion'] ) ) {
 			update_post_meta( $post_id, 'is_discussion', $args['is_discussion'] );
+		}
+
+		if ( ! empty( $args['external_link'] ) ) {
+			update_post_meta( $post_id, 'external_link', $args['external_link'] );
 		}
 
 		$post = get_post( $post_id );

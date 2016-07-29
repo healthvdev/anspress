@@ -101,7 +101,7 @@ class AP_Notification
 		    $comment = (object) $comment;
 
 		    $post = get_post( $comment->comment_post_ID );
-		    if ( $post->post_type == 'question' ) {
+		    if ( $post->post_type == 'question' || 'question_link' == $post->post_type || 'question_discussion' == $post->post_type ) {
 		    	ap_insert_notification( $comment->user_id, $post->post_author, 'comment_on_question', array( 'post_id' => $post->ID, 'comment_id' => $comment->comment_ID ) );
 		    } elseif ( $post->post_type == 'answer' ) {
 		    	ap_insert_notification( $comment->user_id, $post->post_author, 'comment_on_answer', array( 'post_id' => $post->ID, 'comment_id' => $comment->comment_ID ) );

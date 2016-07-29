@@ -210,7 +210,7 @@ class AnsPress_Activity_Hook
 	public function new_comment($comment) {
 		$post = get_post( $comment->comment_post_ID );
 
-		if ( ! ('question' == $post->post_type || 'answer' == $post->post_type) ) {
+		if ( ! ('question' == $post->post_type || 'question_link' == $post->post_type || 'question_discussion' == $post->post_type || 'answer' == $post->post_type) ) {
 			return;
 		}
 

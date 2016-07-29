@@ -77,7 +77,7 @@ class AnsPress_Query_Filter
 		 $complete = '';
 		 $label = '';
 
-		if ( $post->post_type == 'question' || $post->post_type == 'answer' ) {
+		if ( $post->post_type == 'question' || 'question_link' == $post->post_type || 'question_discussion' == $post->post_type || $post->post_type == 'answer' ) {
 			if ( $post->post_status == 'moderate' ) {
 				 $complete = ' selected=\'selected\'';
 				 $label = '<span id=\'post-status-display\'>'.__('Moderate', 'anspress-question-answer' ).'</span>';

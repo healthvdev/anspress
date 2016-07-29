@@ -194,7 +194,15 @@ class AnsPress_Admin
 
 		add_submenu_page( 'anspress', __( 'All Questions', 'anspress-question-answer' ), __( 'All Questions', 'anspress-question-answer' ).$counts['question'], 'delete_pages', 'edit.php?post_type=question', '' );
 
+		add_submenu_page( 'anspress', __( 'All Links', 'anspress-question-answer' ), __( 'All Links', 'anspress-question-answer' ).$counts['question'], 'delete_pages', 'edit.php?post_type=question_link', '' );
+
+		add_submenu_page( 'anspress', __( 'All Discussions', 'anspress-question-answer' ), __( 'All Discussions', 'anspress-question-answer' ).$counts['question'], 'delete_pages', 'edit.php?post_type=question_discussion', '' );
+
 		add_submenu_page( 'anspress', __( 'New Question', 'anspress-question-answer' ), __( 'New Question', 'anspress-question-answer' ), 'delete_pages', 'post-new.php?post_type=question', '' );
+
+		add_submenu_page( 'anspress', __( 'New Link', 'anspress-question-answer' ), __( 'New Link', 'anspress-question-answer' ), 'delete_pages', 'post-new.php?post_type=question_link', '' );
+
+		add_submenu_page( 'anspress', __( 'New Discussion', 'anspress-question-answer' ), __( 'New Discussion', 'anspress-question-answer' ), 'delete_pages', 'post-new.php?post_type=question_discussion', '' );
 
 		add_submenu_page( 'anspress', __( 'All Answers', 'anspress-question-answer' ), __( 'All Answers', 'anspress-question-answer' ).$counts['answer'], 'delete_pages', 'edit.php?post_type=answer', '' );
 

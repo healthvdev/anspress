@@ -175,7 +175,7 @@ function ap_get_option_groups() {
  */
 function ap_load_admin_assets() {
 	$page = get_current_screen();
-	$load = 'question' === $page->post_type || 'answer' === $page->post_type || strpos($page->base, 'anspress' ) !== false || $page->base === 'nav-menus'|| $page->base === 'admin_page_ap_select_question';
+	$load = 'question' === $page->post_type || 'question_link' == $post->post_type || 'question_discussion' == $post->post_type || 'answer' === $page->post_type || strpos($page->base, 'anspress' ) !== false || $page->base === 'nav-menus'|| $page->base === 'admin_page_ap_select_question';
 
 	/**
 	 * Filter ap_load_admin_assets to load admin assets in custom page.

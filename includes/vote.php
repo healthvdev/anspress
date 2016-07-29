@@ -35,7 +35,7 @@ class AnsPress_Vote
 	        ap_ajax_json( $thing->get_error_code() );
 	    }
 
-	    if ( 'question' == $post->post_type && ap_opt( 'disable_down_vote_on_question' ) && 'vote_down' == $type ) {
+	    if ( ('question' == $post->post_type || 'question_link' == $post->post_type || 'question_discussion' == $post->post_type) && ap_opt( 'disable_down_vote_on_question' ) && 'vote_down' == $type ) {
 	        ap_ajax_json( 'voting_down_disabled' );
 	    } elseif ( 'answer' === $post->post_type && ap_opt( 'disable_down_vote_on_answer' ) && 'vote_down' === $type ) {
 	        ap_ajax_json( 'voting_down_disabled' );

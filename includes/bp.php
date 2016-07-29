@@ -236,7 +236,7 @@ class AnsPress_BP
 			$post  = get_post( $comment->comment_post_ID );
 			$notification_link  = get_permalink( $comment->comment_post_ID );
 
-			$type = $post->post_type == 'question' ? __( 'question', 'anspress-question-answer' ) : __( 'answer', 'anspress-question-answer' );
+			$type = ($post->post_type == 'question' || $post->post_type == 'question_link' || $post->post_type == 'question_discussion' )? __( 'question', 'anspress-question-answer' ) : __( 'answer', 'anspress-question-answer' );
 			$amount = 'single';
 
 			$title = substr( strip_tags( $post->post_title ), 0, 35 ). (strlen( $post->post_title ) > 35 ? '...' : '') ;

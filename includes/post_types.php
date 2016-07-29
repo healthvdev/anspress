@@ -104,6 +104,8 @@ class AnsPress_PostTypes
 
 		// register CPT question
 		register_post_type( 'question', $args );
+		register_post_type( 'question_link', $args );
+		register_post_type( 'question_discussion', $args );
 	}
 
 	/**
@@ -181,7 +183,7 @@ class AnsPress_PostTypes
 	 * @since 2.0.0-alpha2
 	 */
 	public function post_type_link($link, $post) {
-		if ( $post->post_type == 'question' ) {
+		if ( $post->post_type == 'question' || 'question_link' == $post->post_type || 'question_discussion' == $post->post_type ) {
 			$question_slug = ap_opt( 'question_page_slug' );
 
 			if ( empty( $question_slug ) ) {
@@ -245,7 +247,7 @@ class AnsPress_PostTypes
 
 		global $post;
 
-		if ( ! ($post->post_type != 'question' || $post->post_type != 'answer') ) {
+		if ( ! ($post->post_type != 'question' || $post->post_type != 'answer') || 'question_link' == $post->post_type || 'question_discussion' == $post->post_type ) {
 			return $column; }
 
 		if ( 'ap_author' == $column ) {

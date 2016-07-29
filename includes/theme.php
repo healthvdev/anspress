@@ -239,7 +239,7 @@ function ap_have_parent_post($post_id = false) {
 	// Get post.
 	$post_o = get_post( $post_id );
 
-	if ( $post_o->post_parent > 0 && 'question' == $post_o->post_type ) {
+	if ( $post_o->post_parent > 0 && ('question' == $post_o->post_type || 'question_link' == $post_o->post_type || 'question_discussion' == $post_o->post_type )) {
 		return true;
 	}
 
@@ -457,7 +457,7 @@ function ap_page() {
 function ap_post_actions() {
 	global $post;
 
-	if ( ! $post->post_type == 'question' || ! $post->post_type == 'answer' ) {
+	if ( ! $post->post_type == 'question' ||  ! $post->post_type == 'question_link' ||  ! $post->post_type == 'question_discussion' || ! $post->post_type == 'answer' ) {
 		return;
 	}
 

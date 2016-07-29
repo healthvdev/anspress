@@ -81,7 +81,7 @@ class AnsPress_Form_Helper
 
 	/** TODO: Add this again */
 	public function after_deleting_comment($comment, $post_type) {
-		if ( $post_type == 'question' ) {
+		if ( $post_type == 'question' || 'question_link' == $post_type  || 'question_discussion' == $post_type) {
 			ap_remove_parti($comment->comment_post_ID, $comment->user_id, 'comment', $comment->comment_ID );
 		} elseif ( $post_type == 'answer' ) {
 			$post_id = wp_get_post_parent_id($comment->comment_post_ID );

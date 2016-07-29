@@ -84,7 +84,7 @@ class AnsPress_Subscriber_Hooks
 		$comment = (object) $comment;
 		$post = get_post( $comment->comment_post_ID );
 
-		if ( $post->post_type == 'question' ) {
+		if ( $post->post_type == 'question' ||  $post->post_type == 'question_link' || $post->post_type == 'question_discussion' ) {
 			ap_remove_subscriber( $post->ID, $comment->user_id, 'q_post' );
 		} elseif ( $post->post_type == 'answer' ) {
 			ap_remove_subscriber( $post->ID, $comment->user_id, 'a_all' );
