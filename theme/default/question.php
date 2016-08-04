@@ -56,8 +56,15 @@
 						?>
                         <div class="question-content ap-q-content" itemprop="text">
 							<?php the_content(); ?>
-                        </div>
 
+                        </div>
+                        <?php $external_link = ap_get_external_link(ap_question_get_the_ID());
+                        	if($external_link!='' ){ 
+                        ?>
+						<div class="ap-filter clearfix" style="text-align: center;float: none; margin: 25px;">
+							<a class="ap-btn-read" target="_blank" style="float:none;color: #fcfcfc;" href="<?php echo $external_link; ?>">Read Full Post</a>
+						</div>
+						<?php } ?>
 						<?php
 							/**
 							 * ACTION: ap_after_question_content

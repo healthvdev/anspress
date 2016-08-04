@@ -238,6 +238,10 @@ class AnsPress_Process_Form
 			$question_array['is_discussion'] = (int) $fields['is_discussion'];
 		}
 
+		if ( isset( $fields['external_link'] ) ) {
+			$question_array['external_link'] = $fields['external_link'];
+		}
+
 		$post_id = ap_save_question( $question_array, true );
 
 		if ( $post_id ) {
@@ -294,6 +298,11 @@ class AnsPress_Process_Form
 		if ( ! is_user_logged_in() && ap_opt( 'allow_anonymous' ) && ! empty( $this->fields['anonymous_name'] ) ) {
 			$question_array['anonymous_name'] = $this->fields['name'];
 		}
+
+		if ( isset( $fields['external_link'] ) ) {
+			$question_array['external_link'] = (int) $fields['external_link'];
+		}
+
 
 		$post_id = ap_save_question( $question_array );
 

@@ -46,6 +46,20 @@ input#tags {
     display: none;
 }
 
+.ap-btn-read{
+	background:#68bb67;
+	border:2px solid rgba(0,0,0,0.2);
+	border-radius:2px;color:#fff;
+
+	font-size:13px;
+	font-weight:bold;
+	height:36px;
+	margin-left:
+	15px;
+	padding:6px 20px
+}
+
+
 /*ultimate members CSS changes*/
 form.ap-avatar-upload-form {
     display: none;
