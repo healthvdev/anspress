@@ -601,7 +601,7 @@ function ap_get_image($question_id = false, $type = 'banner_img') { //banner_img
 	if ( false === $question_id ) {
 		$question_id = get_the_ID(); }
 
-	$meta = get_post_meta( $question_id, $type, '' );
+	$meta = get_post_meta( $question_id, $type, true );
 
 	return $meta;
 }

@@ -8,8 +8,9 @@
 				?>
 				<div class="ap-question-item">
                                     <a style="font-weight: bold;color: #333;" class="ap-question-title" href="<?php ap_question_the_permalink() ?>">
-                                    <?php $img_small_banner = ap_get_image(ap_question_get_the_ID(), 'banner_img');
-                                        if($external_link!='' ){ 
+                                    <?php 
+                                    $img_small_banner = ap_get_image(ap_question_get_the_ID(), 'banner_img');
+                                        if($img_small_banner!='' ){ 
                                     ?>
                                     <div>
                                         <img src="<?php echo $img_small_banner;?>" alt="<?php ap_question_the_permalink() ?>"/>
