@@ -589,3 +589,20 @@ function ap_get_external_link($question_id = false) {
 
 	return $meta;
 }
+
+
+/**
+ * Check if current post is marked as discussion
+ * @param  boolean|integer $question_id    Question ID to check.
+ * @return boolean
+ * @since 2.2.0.1
+ */
+function ap_get_image($question_id = false, $type = 'banner_img') { //banner_img, hero_img, icon
+	if ( false === $question_id ) {
+		$question_id = get_the_ID(); }
+
+	$meta = get_post_meta( $question_id, $type, '' );
+
+	return $meta;
+}
+
