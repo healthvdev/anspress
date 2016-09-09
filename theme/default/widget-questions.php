@@ -12,7 +12,7 @@
                                     $img_small_banner = ap_get_image(ap_question_get_the_ID(), 'banner_img');
                                         if($img_small_banner!='' ){ 
                                     ?>
-                                    <div>
+                                    <div style="margin-bottom: 10px;">
                                         <img src="<?php echo $img_small_banner;?>" alt="<?php ap_question_the_permalink() ?>"/>
                                     </div>
                                     <?php
